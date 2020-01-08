@@ -42,31 +42,56 @@ public class GenStrings {
     int waterNeed = 200;
     int milkNeed = 50;
     int cfeBeans = 15;
-    int wtrPrCp = waterNeed * coffeeCups;
-    int milkPrCp = milkNeed * coffeeCups;
-    int bnsPrCp = cfeBeans * coffeeCups;
-    AvailWtr = AvailWtr * coffeeCups;
-    AvailMilk = AvailMilk * coffeeCups;
-    AvailGrams = AvailGrams * coffeeCups;
+    int maxAmntCps;
     /** TODO: Need to create conditionals to determine if I have enough materials
      * WIll use the expected values: waterNeed, milkNeed, cfeBeans and compare
      * to what is "Avail..." in the machine. If there is excess determine how
      * more coffee cups can be made.
+     * 
      */
-    if(AvailWtr >= wtrPrCp && AvailMilk >= milkPrCp && AvailGrams >= bnsPrCp){
-        System.out.println("Yes I can make that amount of coffee");
-        //next determine what material will limit my MAX amount of coffee
-        if(){
-            
+    //next determine what material will limit my MAX amount of coffee
+    //values are for one cup of coffee
+    int limtedWtr = AvailWtr / waterNeed;
+    int limtedMilk = AvailMilk / milkNeed;
+    int limtedGrams = AvailGrams / cfeBeans;
+
+    if(limtedWtr >= coffeeCups && limtedMilk >= coffeeCups && AvailGrams >= coffeeCups){
+
+        if(limtedGrams > limtedWtr && limtedWtr < limtedMilk){
+            maxAmntCps = limtedWtr - coffeeCups;
+            System.out.printf("Yes I can make that amount of coffee! (and even %d more than that.)\n", maxAmntCps);
+        }else if(limtedWtr >= limtedMilk && limtedMilk <= limtedGrams){
+            maxAmntCps = limtedMilk - coffeeCups;
+            System.out.printf("Yes I can make that amount of coffee! (and even %d more than that.)\n", maxAmntCps);
+        }else if(limtedWtr >= limtedGrams && limtedGrams <= limtedMilk){
+            maxAmntCps = limtedGrams - coffeeCups;
+            System.out.printf("Yes I can make that amount of coffee! (and even %d more than that.)\n", maxAmntCps);
+        }else if(AvailWtr == waterNeed && AvailMilk == milkNeed && AvailGrams == cfeBeans){
+            maxAmntCps = 1;
+            System.out.printf("Yes I can make that amount of coffee! (and even %d more than that.)\n", maxAmntCps);
+        }else{
+            System.out.println("Yes I can make that amount of coffee!");
+    }}else if(AvailWtr > waterNeed && AvailMilk > milkNeed && AvailGrams > cfeBeans){
+        if(limtedGrams > limtedWtr && limtedWtr < limtedMilk){
+            maxAmntCps = limtedWtr;
+            System.out.printf("No, I can make only %d cup(s) of coffee", maxAmntCps);
+        }else if(limtedWtr > limtedMilk && limtedMilk < limtedGrams){
+            maxAmntCps = limtedWtr;
+            System.out.printf("No, I can make only %d cup(s) of coffee", maxAmntCps);
+        }else if(limtedWtr > limtedGrams && limtedGrams < limtedMilk){
+            maxAmntCps = limtedGrams;
+            System.out.printf("No, I can make only %d cup(s) of coffee", maxAmntCps);
+        
+    }}else{
+        if(AvailWtr == 0 && AvailMilk == 0 && AvailGrams == 0){
+        maxAmntCps = 0;
+        System.out.printf("No, I can make only %d cup(s) of coffee", maxAmntCps);
+        }else{
+            System.out.println("No, I can\'t make that amount of coffee");
         }
-    }else{
-        System.out.println("No, I can\'t make that amount of coffee");
+        
     }
-    System.out.printf("For %d cups of coffee you will need: \n", coffeeCups);
-    System.out.printf("%d ml of water \n",waterNeed);
-    System.out.printf("%d ml of milk \n",milkNeed);
-    System.out.printf("%d g of coffee beans \n",cfeBeans);
-    System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n",
-            coffeeStart,grindBns, wtrStart,mxWtrBns,pour,pourMlk,serve);
+//    System.out.printf("%s\n%s\n%s\n%s\n%s\n%s\n%s\n",
+//            coffeeStart,grindBns, wtrStart,mxWtrBns,pour,pourMlk,serve);
     }
 }
