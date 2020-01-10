@@ -13,12 +13,20 @@ import java.util.Scanner;
  */
 public class scanTest {
     public static void main(String[] args){
+
         Scanner scanner = new Scanner(System.in);
         int valOne = scanner.nextInt();
-        int valTwo = scanner.nextInt();
-        int valThree = scanner.nextInt();
-        int valFour = scanner.nextInt();
-        System.out.printf("valFour: %d, valThree: %d, valTwo: %d,valOne: %d\n", valFour,
-                valThree, valTwo, valOne);
+        int rev1 = valOne % 10;
+        int rev2 = (valOne % 100) / 10;
+        int rev3 = (valOne / 10) / 10;
+        System.out.println(rev1);
+        System.out.println(rev2);
+        System.out.println(rev3);
+//        int valTwo = scanner.nextInt();
+//        int valThree = scanner.nextInt();
+//        int valFour = scanner.nextInt();
+//        System.out.printf("valFour: %d, valThree: %d, valTwo: %d,valOne: %d\n", valFour,
+//                valThree, valTwo, valOne);
+        scanner.close();
     }
 }
